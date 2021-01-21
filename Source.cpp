@@ -37,11 +37,11 @@ int main() {
 		{
 			cout << "Invalid input.  Please try again\n";
 			continue;
-		}																//       0 0 0								For x	  0 1 0	       For o	0 2 0
-																		//       0 0 0										  0 0 0			    	0 0 0
-		grid[row][col] = turn + 1;   //Internally, the initialisation looks like 0 0 0  After input of row/columns(using 0,1) 0 0 0				    0 0 0
+		}								//       0 0 0				  For x	      0 1 0	       For o	0 2 0
+										//       0 0 0					      0 0 0	        	0 0 0
+		grid[row][col] = turn + 1;   //Internally, the initialisation looks like 0 0 0  After input of row/columns(using 0,1) 0 0 0	 	        0 0 0
 
-		//However, this input is a little bit ugly for us!
+		//However, this output would be a little bit ugly for us, so we print the grid using . for 0, x for 1, and o for 2!
 		//Printing the grid:
 
 		for (int r = 0; r < n; ++r)
