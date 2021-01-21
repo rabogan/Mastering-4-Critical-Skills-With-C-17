@@ -6,7 +6,7 @@ int main() {
 	cout << "Enter your grid dimensions:\n";
 	
 	int n = 0;
-	cin >> n;                  //The size of the grid, is n*n, and the number of 'moves/turns' in the game will be n*n.
+	cin >> n;                  //The size of the grid, is n*n, and the number of 'moves' in the game will be n*n.
 
 	int turn = 0;             //If turn == 0 (or false), then we will start with x.   If turn == 1, we start with o.
 	int moves = 0;            //This represents the number of MOVES in the game.
