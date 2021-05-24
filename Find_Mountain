@@ -1,0 +1,46 @@
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	int n = 0;
+	int m = 0;
+	cin >> n >> m;
+	int my_arr[10][10];
+
+	for (int i = 0; i < n; ++i)
+	{
+		for (int j = 0; j < m; ++j)
+			cin >> my_arr[i][j];
+	}
+
+	int dir_arr_i[8]{-1,-1,-1,0,0,1,1,1};
+	int dir_arr_j[8]{-1,0,1,-1,1,-1,0,1};
+
+	for (int i = 0; i < n; ++i)
+	{
+		for (int j = 0; j < m; ++j)
+		{
+			bool is_mountain = true;
+
+			int value = my_arr[i][j];
+
+			for (int check = 0; check < 8; ++check)
+			{
+				
+				int new_i = i+dir_arr_i[check];
+				int new_j = j+dir_arr_j[check];
+
+				if (new_i < 0 || new_j < 0 || new_i == n || new_j == m)
+					continue;
+
+				if (my_arr[new_i][new_j] > value)
+					is_mountain = false;
+			}
+
+			if (is_mountain)
+				cout << "Mountain found at (" << i << "," << j << ")\n";
+		}
+	}
+	return 0;
+}
