@@ -1,0 +1,49 @@
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	int n = 0;
+	int m = 0;
+	cin >> n >> m;
+	int my_arr[10][10];   //You may make this as large as you wish!
+
+	int k = 0;
+	cin >> k;  //This is the number of steps that will be taken...
+
+	int dir_arr_i[4]{-1,0,1,0};
+	int dir_arr_j[4]{0,1,0,-1};
+
+	int start_i = 0;   //The question specifies that we start from (0,0)
+	int start_j = 0;
+
+	while (k--)
+	{
+		int steps = 0;
+		int direction = 0;
+
+		cout << "1)Up  2)Right  3)Down  4)Left\nFirstly, enter the direction [1-4]:  ";
+		cin >> direction;
+		cout << "Now, enter how many steps you wish to take:   ";
+		cin >> steps;
+
+		direction--;  //It's a 0-index directional array
+
+		for (int i = 0; i < steps; ++i)
+		{
+			start_i += dir_arr_i[direction];
+			start_j += dir_arr_j[direction];
+
+			if (start_i < 0)
+				start_i = n-1;
+			if (start_i == n)
+				start_i = 0;
+			if (start_j < 0)
+				start_j = m-1;
+			if (start_j == m)
+				start_j = 0;
+		}
+		cout << "The new position is (" << start_i << "," << start_j << ")\n";
+	}
+	return 0;
+}
