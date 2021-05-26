@@ -1,0 +1,27 @@
+#include <iostream>
+using namespace std;
+
+double array_average(int my_arr[], int length)
+{
+	if (length == 1)
+		return my_arr[0];
+
+	double previous_average = array_average(my_arr, length - 1);
+	double raw_total = previous_average * (length - 1);
+	return (raw_total + my_arr[length - 1])/length;
+}
+
+int main()
+{
+	int my_arr[100];
+	cout << "How many values would you like in your array?\n";
+	int n = 0;
+	cin >> n;
+	cout << "Please enter " << n << " values\n";
+	for (int i = 0; i < n; ++i)
+		cin >> my_arr[i];
+
+	cout << "This gives us an average of " << array_average(my_arr, n);
+
+	return 0;
+}
