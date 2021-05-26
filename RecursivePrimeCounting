@@ -1,0 +1,43 @@
+#include <iostream>
+using namespace std;
+
+bool is_prime(int value, int check = 3)
+{
+	if (value == 2)
+		return true;
+
+	if (value <= 1||value%2==0)
+		return false;
+
+	if (value == check)
+		return true;
+
+	if (value % check == 0)
+		return false;
+
+	return is_prime(value, check + 1);
+}
+
+int count_primes(int start, int end)
+{
+	if (start>end)  //Our base case occurs once start has incremented to a value higher than our 'final' value.
+		return 0;
+
+	int total = count_primes(start + 1, end);  //We use a variable to calculate our total, which calls the function recursively
+	//Note how start is being incremented each time.
+	if (is_prime(start))
+		total++;  //We call a bool function, which itself uses recursion to determine if 'start' is prime
+	return total;
+}
+
+int main()
+{
+	int start = 0;
+	int end = 0;
+	cout << "Please enter your starting and final values:  \n";
+	cin >> start >> end;
+	cout << "Calculating the number of primes within this range:\n";
+	cout << "There are " << count_primes(start, end) << " primes between " << start << " and " << end;
+
+	return 0;
+}
