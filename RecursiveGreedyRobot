@@ -1,0 +1,58 @@
+#include <iostream>
+using namespace std;
+
+int di[3]{0,1,1};
+int dj[3]{1,0,1};
+
+int Grid_Sum(int my_arr[10][10], int total_rows, int total_cols, int starting_row = 0, int starting_col = 0)
+{
+	int sum = my_arr[starting_row][starting_col];  //Grid starts at (0,0), so this is our first result.
+	if (total_rows-1 == starting_row && total_cols-1 == starting_col)
+		//Essentially, this is when our starting_row and starting_col reach the bottom corner
+		return sum;   // //Our base case assumes it's a 1*1 array.  We return (my_arr[0][0]) as our base case!
+
+	int max = 0;
+	int max_index = 1;
+
+	for (int i = 0; i < 3; ++i)
+	{
+		int new_row = starting_row + di[i];
+		int new_col = starting_col + dj[i];
+		
+		if (new_row >= total_rows || new_col >= total_cols)
+			continue;
+
+		if (my_arr[new_row][new_col] > max)
+		{
+			max = my_arr[new_row][new_col];
+			max_index = i;
+		}
+	}
+
+	starting_row += di[max_index];
+	starting_col += dj[max_index];
+
+	return sum + Grid_Sum(my_arr, total_rows, total_cols, starting_row, starting_col);
+}
+
+int main()
+{
+	int my_arr[10][10];
+	int n = 0;
+	int m = 0;
+	cout << "How large would you like your 2D array to be?  Please enter the row and column number (no greater than 9!)\n";
+
+	cin >> n >> m;
+	for (int i = 0; i < n; ++i)
+	{
+		cout << "Enter " << m << " values for row " << i + 1 << ":\n";
+		for (int j = 0; j < m; ++j)
+		{
+			cin >> my_arr[i][j];
+		}
+	}
+
+	cout << "Our maximum sum using a grid for the greedy robot is " << Grid_Sum(my_arr, n, m);
+
+	return 0;
+}
