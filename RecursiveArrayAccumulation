@@ -1,0 +1,30 @@
+#include <iostream>
+using namespace std;
+
+void array_accumulation(int arr[], int length)
+{
+	if (length == 1)
+		return;
+
+	array_accumulation(arr, length - 1);
+	arr[length - 1] += arr[length - 2];
+}
+
+int main()
+{
+	int my_arr[100];
+	cout << "How many values would you like in your initial array?\n";
+	int n = 0;
+	cin >> n;
+	cout << "Please enter " << n << " values\n";
+	for (int i = 0; i < n; ++i)
+		cin >> my_arr[i];
+
+	array_accumulation(my_arr, n);
+
+	cout << "Printing out the new (accumulated) array:\n";
+	for (int i = 0; i < n; ++i)
+		cout << my_arr[i] << " ";
+
+	return 0;
+}
