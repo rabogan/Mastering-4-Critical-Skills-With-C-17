@@ -1,0 +1,42 @@
+#include <iostream>
+using namespace std;
+//N.B.  If in doubt, TRACE IT OUT!
+//Given array, change each element at position i to be the maximum of 
+//numbers from index i to end of array
+                 // 0  1  2  3  4  5
+//  7 7 7 7 4 2 ⇒ [7, 7, 7, 7, 4, 2]
+
+void right_max(int my_arr[], int length,int start_pos = 0)
+{
+	if (start_pos == length - 1)
+		return;
+
+	right_max(my_arr, length, start_pos + 1);
+	my_arr[start_pos] = max(my_arr[start_pos], my_arr[start_pos + 1]);
+}
+
+int main()
+{
+	int n = 0;
+	cout << "How many values do you want in your array?\n";
+	cin >> n;
+	int* my_arr = NULL;
+	my_arr = new int[n];
+	cout << "Enter " << n << " values, please\n";
+	for (int i = 0; i < n; ++i)
+		cin >> my_arr[i];
+
+	right_max(my_arr, n);
+
+	cout << "Printing out the completed array:\n";
+	for (int i = 0; i < n; ++i)
+		cout << my_arr[i] << " ";
+}
+/*
+Hint Number 1:  You will be incrementing *something* when you recursively call your function
+Hint Number 2:  You will 'burrow' through the array from left to right, then plow backwards, 
+...changing the values in the array if they meet specific criteria
+Hint Number 3:  Your length won't be changing when you call the function recursively
+Hint Number 4:  You increment the start_pos, then.   How will you determine each my_arr[start_pos]????
+
+*/
